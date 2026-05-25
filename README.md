@@ -1,51 +1,39 @@
-# Ev1_grupo_5
-Entregables evaluacion 1 - Programacion para ciencia de datos
+# Ev2_grupo_5
+### Sobre el archivo `requirements_encargo2.txt`
 
-análisis y Retención de Clientes  - Servicio de Suscripción Digital
+**¿Qué es exactamente este archivo?**
+Es una "fotografía" (snapshot) estática del entorno de desarrollo de Google Colab en el momento exacto en que se programaron y entrenaron los modelos. Consiste en un listado exhaustivo de todas las librerías de Python utilizadas y sus versiones milimétricamente específicas (por ejemplo, `scikit-learn==1.x.x`, `pandas==2.x.x`).
 
-Descripción del Proyecto
-Este proyecto aborda un problema crítico de negocio: el aumento en la tasa de cancelación de usuarios en una empresa de servicios digitales por suscripción. 
+**¿Por qué es vital para este proyecto?**
+Su propósito es garantizar la Reproducibilidad Científica Absoluta.
 
-A través de un flujo de trabajo completo de Ciencia de Datos, este repositorio documenta la limpieza, transformación y análisis exploratorio de un conjunto de datos multidimensional. El objetivo es procesar variables demográficas, económicas y de comportamiento para entender los motivos de fuga, identificar perfiles de riesgo y dejar la información lista para el entrenamiento de modelos predictivos avanzados.
+En la Ciencia de Datos y el Machine Learning, las librerías se actualizan constantemente. Una versión más nueva de una librería podría cambiar ligeramente el cálculo subyacente de un algoritmo, haciendo que el código falle o arroje métricas distintas en otra computadora. Al adjuntar este archivo y "congelar" las dependencias, aseguramos que la comisión evaluadora pueda reconstruir nuestro entorno de forma idéntica. Esto elimina el sesgo tecnológico y garantiza que al ejecutar el código se obtendrán exactamente los mismos resultados, F1-Scores y Matrices de Confusión reportados en el informe técnico.
 
-Hallazgos Estratégicos
-Durante el análisis exploratorio, se descubrieron datos claves para el negocio:
-- Foco principal de abandono: El 45% de las cancelaciones provienen de usuarios suscritos al Plan Básico.
-- Identificación de Perfiles Críticos: Se detectó un "perfil paradójico" de 1.983 clientes que hacen un uso intensivo de la App, pero cuya deuda supera sus ingresos mensuales, requiriendo acción inmediata.
-- Viabilidad Algorítmica: Se determinó que las correlaciones lineales individuales con el abandono son casi nulas (~0.01), lo que fundamenta la transición directa hacia algoritmos de ensamble no lineales (como Random Forest o XGBoost) para futuras predicciones.
+---
 
-Tecnologías Utilizadas
-- Lenguaje: Python 3.0
-- Análisis y Manipulación: Pandas, NumPy
--  Visualización:  Matplotlib
-- Machine Learning (Preparación): Scikit-Learn
-- Entorno: Jupyter Notebook / Google Colab
+### Instrucciones de Reproducibilidad (Cómo usar este archivo)
 
+Para replicar el entorno exacto del proyecto, selecciona una de las siguientes opciones de ejecución:
 
-Cómo Ejecutar el Proyecto localmente
-El cuaderno principal está diseñado para ejecutarse de manera secuencial (de arriba hacia abajo). Documenta el flujo de trabajo completo desde la ingesta de datos hasta el análisis exploratorio. 
+**Opción 1: Ejecución en Entorno Local (Recomendado)**
+Si deseas clonar el repositorio y ejecutar los scripts de forma local, sigue estos pasos para aislar el entorno:
 
-A continuación, se detalla el paso a paso metodológico implementado en el código:
+1. Abre tu terminal en la carpeta raíz del proyecto y crea un entorno virtual:
+   - En Windows: `python -m venv venv`
+   - En macOS/Linux: `python3 -m venv venv`
 
-Paso 1: Configuración del Entorno y Carga Inicial
-* Importación de Librerías: El script inicia cargando las dependencias fundamentales para la manipulación y visualización de datos (`pandas`, `numpy`, `matplotlib`, `seaborn` y herramientas de `scikit-learn`).
-* Ingesta de Datos: Se realiza la lectura del archivo crudo `dataset_clientes.csv` importado desde github mediante un dataframe de Pandas, estableciendo la base para la auditoría inicial.
+2. Activa el entorno virtual:
+   - En Windows: `venv\Scripts\activate`
+   - En macOS/Linux: `source venv/bin/activate`
 
-Paso 2: Auditoría y Limpieza Crítica
-* Tratamiento de Identificadores: Se detectan y eliminan registros duplicados en la variable `id_cliente` para asegurar la unicidad de las observaciones.
-* Gestión de Valores Nulos: Se aplica un método de imputación estratégica sobre los campos con datos faltantes (específicamente en `gasto_mensual`), utilizando medidas de tendencia central calculadas a partir de la distribución de los datos existentes para no sesgar el análisis.
+3. Instala las dependencias exactas ejecutando:
+   - `pip install -r requirements_encargo2.txt`
 
-Paso 3: Tratamiento de Valores Atípicos (Outliers)
-* Análisis de Distribución: Se abordan las variables numéricas con el objetivo de comprender la distribución real de sus datos, identificando visual y estadísticamente la presencia de valores extremos que se escapan del comportamiento normal.
-* Mitigación: Se aplica la técnica de Winsorización para limitar o "tapar" estos outliers en los extremos de la distribución. Esto permite contener la distorsión de los datos sin la necesidad de eliminar registros, evitando sesgos tanto en el análisis exploratorio como en el futuro entrenamiento algorítmico.
+**Opción 2: Ejecución en Google Colab**
+El proyecto fue desarrollado originalmente en Google Colab. Si decides evaluar el proyecto importando los cuadernos (.ipynb) a esta plataforma, debes forzar a Colab a usar nuestras versiones.
 
-Paso 4: Transformación y Codificación (Feature Engineering)
-* Encoding de Categóricas: Dado que los modelos predictivos requieren entradas matemáticas, se transforman las variables de texto (como `tipo_plan`, `genero`, `region`). El código aplica técnicas de codificación para vectorizar estas características sin perder su valor informativo.
-
-Paso 5: Análisis Exploratorio de Datos (EDA)
-* Cálculo de Correlaciones: La fase final del código ejecuta una matriz de correlación de Pearson sobre el dataset limpio. 
-* Evaluación de Resultados: El código genera las visualizaciones que respaldan la conclusión principal del informe: la relación lineal entre las variables predictoras y la variable objetivo (`abandono`) es mínima (aprox. 0.01), validando la necesidad técnica de escalar el proyecto hacia modelos de ensamble no lineales.
-
+Para ello, sube el archivo `requirements_encargo2.txt` al almacenamiento de sesión de Colab y ejecuta la siguiente celda al inicio de tu cuaderno:
+   - `!pip install -r requirements_encargo2.txt`
 
 Equipo de Trabajo
 Diego Améstica
